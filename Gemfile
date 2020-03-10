@@ -8,4 +8,5 @@ ruby '2.6.3'
 
 group :development do
   gem 'rspec', '~> 3.9'
+  gem 'rubocop', '~> 0.80.1'
 end
