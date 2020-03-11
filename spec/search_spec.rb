@@ -15,8 +15,6 @@ RSpec.describe Search do
   end
 
   it 'saves pattern' do
-    expect(search.call).to be_a Array
-    expect(search.call).to eq([{ x: 1, y: 1 }])
-    expect(search.call).to eq([{ x: 1, y: 1 }, { x: 2, y: 2 }])
+    expect(search.call).to eq([{ x: 60, y: 13 }, { x: 74, y: 1 }, { x: 85, y: 12 }])
   end
 end
