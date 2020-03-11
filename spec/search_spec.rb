@@ -9,8 +9,9 @@ require_relative '../lib/invader'
 RSpec.describe Search do
   subject(:search) do
     Search.new(
-      Radar.new('spec/fixtures/galaxy.txt'),
-      Invader.new('spec/fixtures/invader_1.txt')
+      Radar.new(File.read('spec/fixtures/galaxy.txt')),
+      Invader.new(File.read('spec/fixtures/invader_1.txt')),
+      Strategies::Compare
     )
   end
 

@@ -5,7 +5,7 @@ require 'spec_helper'
 require_relative '../lib/invader'
 
 RSpec.describe Invader do
-  subject(:invader) { Invader.new('spec/fixtures/invader_1.txt') }
+  subject(:invader) { Invader.new(File.read('spec/fixtures/invader_1.txt')) }
 
   it 'saves pattern' do
     expect(invader.pattern).to be_a String

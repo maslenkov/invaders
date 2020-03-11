@@ -6,6 +6,6 @@ require_relative '../lib/radar'
 
 RSpec.describe Radar do
   it 'saves galaxy snapshot' do
-    expect(Radar.new('spec/fixtures/galaxy.txt').shot).to be_a String
+    expect(Radar.new(File.read('spec/fixtures/galaxy.txt')).shot).to be_a String
   end
 end

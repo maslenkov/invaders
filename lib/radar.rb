@@ -10,8 +10,8 @@ class Radar
   sig { returns(String) }
   attr_reader :shot
 
-  sig { params(galaxy_file_path: String).void }
-  def initialize(galaxy_file_path)
-    @shot = T.let(File.read(galaxy_file_path), String)
+  sig { params(snapshot: String).void }
+  def initialize(snapshot)
+    @shot = T.let(snapshot, String)
   end
 end
