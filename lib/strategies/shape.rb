@@ -18,7 +18,7 @@ module Strategies
 
     sig { returns(T::Array[T::Array[String]]) }
     def square_matrix
-      @square_matrix ||= @pattern.split("\n").map { |l| l.split('') }
+      @square_matrix ||= lines.map { |line| line.split('') }
     end
 
     sig { returns(Integer) }
@@ -29,6 +29,11 @@ module Strategies
     sig { returns(Integer) }
     def square_matrix_height
       @square_matrix_height ||= square_matrix.length
+    end
+
+    sig { returns(T::Array[String]) }
+    def lines
+      @lines ||= @pattern.split("\n")
     end
   end
 end

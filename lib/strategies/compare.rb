@@ -24,16 +24,16 @@ module Strategies
 
     private
 
-    RATE = 0.75
+    NOISE_RATE = 0.73
 
     sig do
       params(suspects_grouped_by_weights: T::Hash[Integer, T::Array[{ x: Integer, y: Integer }]])
         .returns(T::Array[{ x: Integer, y: Integer }])
     end
     def reduce_suspects(suspects_grouped_by_weights)
-      rate = RATE * @invader.sizes[:width] * @invader.sizes[:height]
+      min_weight = NOISE_RATE * @invader.sizes[:width] * @invader.sizes[:height]
       suspects_grouped_by_weights.each_with_object([]) do |(suspect_weight, coordinates), result|
-        result.concat(coordinates) if suspect_weight > rate
+        result.concat(coordinates) if suspect_weight > min_weight
       end
     end
 
