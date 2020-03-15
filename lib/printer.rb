@@ -59,18 +59,18 @@ class Printer
   end
 
   sig { params(y: Integer).returns(Integer) }
-  def get_block_height(y)
-    y >= 0 ? @invader.sizes[:height] : @invader.sizes[:height] + y
+  def get_block_height(y_coord)
+    y_coord >= 0 ? @invader.sizes[:height] : @invader.sizes[:height] + y_coord
   end
 
   sig { params(y: Integer).returns(Integer) }
-  def get_block_offset(y)
-    y >= 0 ? 0 : -y
+  def get_block_offset(y_coord)
+    y_coord >= 0 ? 0 : -y_coord
   end
 
   sig { params(y: Integer).returns(Integer) }
-  def get_block_y(y)
-    y >= 0 ? y : 0
+  def get_block_y(y_coord)
+    y_coord >= 0 ? y_coord : 0
   end
 
   sig { returns(Integer) }
