@@ -10,7 +10,8 @@ RSpec.describe Strategies::EdgesOffsets do
   subject(:extender) do
     Strategies::EdgesOffsets.new(
       Radar.new(File.read('spec/fixtures/galaxy_top_left.txt')),
-      Invader.new(File.read('spec/fixtures/invader_2.txt'))
+      Invader.new(File.read('spec/fixtures/invader_2.txt')),
+      Strategies::Compare::NOISE_RATE
     )
   end
 
@@ -39,7 +40,7 @@ RSpec.describe Strategies::EdgesOffsets do
 
   describe '#correct_results' do
     it 'removes offset' do
-      expect(subject.remove_offset_from_result([{ x: 4, y: 4}])).to eq([{ x: 1, y: 1}])
+      expect(subject.remove_offset_from_result([{ x: 4, y: 4 }])).to eq([{ x: 1, y: 1 }])
     end
   end
 end

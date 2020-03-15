@@ -18,7 +18,7 @@ module Strategies
 
     sig { returns(T::Array[{ x: Integer, y: Integer }]) }
     def call
-      extender = Strategies::EdgesOffsets.new(@radar, @invader)
+      extender = Strategies::EdgesOffsets.new(@radar, @invader, Strategies::Compare::NOISE_RATE)
 
       extended_galaxy = extender.add_offset_to_galaxy_shot
 

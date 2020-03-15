@@ -3,17 +3,20 @@
 
 require 'sorbet-runtime'
 require_relative './shape'
-require_relative './compare'
 
 module Strategies
   class EdgesOffsets
     extend T::Sig
 
-    sig { params(radar: Radar, invader: Invader).void }
-    def initialize(radar, invader)
-      @radar = T.let(radar, Radar)
-
+    sig { params(radar: Radar, invader: Invader, noise_rate: Float).void }
+    def initialize(radar, invader, noise_rate)
+      @galaxy_shape = T.let(Strategies::Shape.new(radar.shot), Strategies::Shape)
       @invader_shape = T.let(Strategies::Shape.new(invader.pattern), Strategies::Shape)
+      @galaxy = T.let('', String)
+
+      @additional_width = T.let(nil, T.nilable(Integer))
+      @additional_height = T.let(nil, T.nilable(Integer))
+      @noise_rate = T.let(noise_rate, Float)
     end
 
     sig { returns(String) }
@@ -36,8 +39,13 @@ module Strategies
 
     private
 
-    NOISE_RATE = 0.73
-    EDGE_SYMBOL = 'o'
+    EDGE_SYMBOL = T.let('o'.freeze, String)
+
+    sig { returns(String) }
+    attr_reader :galaxy
+
+    sig { returns(Strategies::Shape) }
+    attr_reader :galaxy_shape
 
     sig { returns(String) }
     def extend_galaxy_shot_with_edges
@@ -65,24 +73,14 @@ module Strategies
       end
     end
 
-    sig { returns(String) }
-    def galaxy
-      @galaxy ||= ''
-    end
-
-    sig { returns(Strategies::Shape) }
-    def galaxy_shape
-      @galaxy_shape ||= Strategies::Shape.new(@radar.shot)
-    end
-
     sig { returns(Integer) }
     def additional_width
-      @additional_width ||= (@invader_shape.square_matrix_width * (1 - NOISE_RATE)).ceil
+      @additional_width ||= (@invader_shape.square_matrix_width * (1 - @noise_rate)).ceil
     end
 
     sig { returns(Integer) }
     def additional_height
-      @additional_height ||= (@invader_shape.square_matrix_height * (1 - NOISE_RATE)).ceil
+      @additional_height ||= (@invader_shape.square_matrix_height * (1 - @noise_rate)).ceil
     end
   end
 end

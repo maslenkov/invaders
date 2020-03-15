@@ -14,6 +14,7 @@ module Strategies
       @square_matrix = T.let(nil, T.nilable(T::Array[T::Array[String]]))
       @square_matrix_width = T.let(nil, T.nilable(Integer))
       @square_matrix_height = T.let(nil, T.nilable(Integer))
+      @lines = T.let(nil, T.nilable(T::Array[String]))
     end
 
     sig { returns(T::Array[T::Array[String]]) }

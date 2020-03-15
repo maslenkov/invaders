@@ -8,6 +8,8 @@ module Strategies
   class Compare
     extend T::Sig
 
+    NOISE_RATE = 0.73
+
     sig { params(radar: Radar, invader: Invader).void }
     def initialize(radar, invader)
       @radar = T.let(radar, Radar)
@@ -23,8 +25,6 @@ module Strategies
     end
 
     private
-
-    NOISE_RATE = 0.73
 
     sig do
       params(suspects_grouped_by_weights: T::Hash[Integer, T::Array[{ x: Integer, y: Integer }]])
@@ -58,21 +58,23 @@ module Strategies
 
     sig { returns(T::Array[[Integer, Integer]]) }
     def coordinates
+      result = []
       (0...col_count).map do |col_number|
         (0...lines_count).map do |line_number|
-          [col_number, line_number]
+          result << [col_number, line_number]
         end
-      end.flatten(1)
+      end
+      result
     end
 
     sig { returns(Integer) }
     def col_count
-      @col_count ||= (@galaxy_shape.square_matrix_width - @invader.sizes[:width])
+      @galaxy_shape.square_matrix_width - @invader.sizes[:width]
     end
 
     sig { returns(Integer) }
     def lines_count
-      @lines_count ||= (@galaxy_shape.square_matrix_height - @invader.sizes[:height])
+      @galaxy_shape.square_matrix_height - @invader.sizes[:height]
     end
 
     sig { returns(T::Array[T::Array[String]]) }
