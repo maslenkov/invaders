@@ -2,9 +2,9 @@
 # frozen_string_literal: false
 
 require 'sorbet-runtime'
-require_relative './shape'
 require_relative './compare'
-require_relative './edges_offsets'
+require_relative './kit/shape'
+require_relative './kit/edges_offsets'
 
 module Strategies
   class CompareWithEdges
@@ -18,7 +18,7 @@ module Strategies
 
     sig { returns(T::Array[{ x: Integer, y: Integer }]) }
     def call
-      extender = Strategies::EdgesOffsets.new(@radar, @invader, Strategies::Compare::NOISE_RATE)
+      extender = Strategies::Kit::EdgesOffsets.new(@radar, @invader, Strategies::Compare::NOISE_RATE)
 
       extended_galaxy = extender.add_offset_to_galaxy_shot
 

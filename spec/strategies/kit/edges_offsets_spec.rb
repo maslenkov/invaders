@@ -2,13 +2,13 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require_relative '../../lib/strategies/edges_offsets'
-require_relative '../../lib/radar'
-require_relative '../../lib/invader'
+require_relative '../../../lib/strategies/kit/edges_offsets'
+require_relative '../../../lib/radar'
+require_relative '../../../lib/invader'
 
-RSpec.describe Strategies::EdgesOffsets do
+RSpec.describe Strategies::Kit::EdgesOffsets do
   subject(:extender) do
-    Strategies::EdgesOffsets.new(
+    Strategies::Kit::EdgesOffsets.new(
       Radar.new(File.read('spec/fixtures/galaxy_top_left.txt')),
       Invader.new(File.read('spec/fixtures/invader_2.txt')),
       Strategies::Compare::NOISE_RATE

@@ -12,8 +12,8 @@ class Printer
     @radar = T.let(radar, Radar)
     @invader = T.let(invader, Invader)
 
-    @galaxy_shape = T.let(Strategies::Shape.new(radar.shot), Strategies::Shape)
-    @invader_shape = T.let(Strategies::Shape.new(invader.pattern), Strategies::Shape)
+    @galaxy_shape = T.let(Strategies::Kit::Shape.new(radar.shot), Strategies::Kit::Shape)
+    @invader_shape = T.let(Strategies::Kit::Shape.new(invader.pattern), Strategies::Kit::Shape)
     @galaxy_matrix = T.let(nil, T.nilable(T::Array[T::Array[String]]))
     @invader_matrix = T.let(nil, T.nilable(T::Array[T::Array[String]]))
     @lines_count = T.let(nil, T.nilable(Integer))

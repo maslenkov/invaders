@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require 'sorbet-runtime'
-require_relative './shape'
+require_relative './kit/shape'
 
 module Strategies
   class Compare
@@ -15,8 +15,8 @@ module Strategies
       @radar = T.let(radar, Radar)
       @invader = T.let(invader, Invader)
 
-      @galaxy_shape = T.let(Strategies::Shape.new(radar.shot), Strategies::Shape)
-      @invader_shape = T.let(Strategies::Shape.new(invader.pattern), Strategies::Shape)
+      @galaxy_shape = T.let(Strategies::Kit::Shape.new(radar.shot), Strategies::Kit::Shape)
+      @invader_shape = T.let(Strategies::Kit::Shape.new(invader.pattern), Strategies::Kit::Shape)
     end
 
     sig { returns(T::Array[{ x: Integer, y: Integer }]) }
