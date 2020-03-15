@@ -77,12 +77,12 @@ module Strategies
       @galaxy_shape.square_matrix_height - @invader.sizes[:height]
     end
 
-    sig { returns(T::Array[T::Array[String]]) }
+    sig { returns(T::Array[T::Array[String]]) } if ENV['RUBY_ENVIRONMENT'] == 'dev'
     def galaxy_matrix
       @galaxy_shape.square_matrix
     end
 
-    sig { returns(T::Array[T::Array[String]]) }
+    sig { returns(T::Array[T::Array[String]]) } if ENV['RUBY_ENVIRONMENT'] == 'dev'
     def invader_matrix
       @invader_shape.square_matrix
     end

@@ -18,7 +18,7 @@ module Strategies
         @lines = T.let(nil, T.nilable(T::Array[String]))
       end
 
-      sig { returns(T::Array[T::Array[String]]) }
+      sig { returns(T::Array[T::Array[String]]) } if ENV['RUBY_ENVIRONMENT'] == 'dev'
       def square_matrix
         @square_matrix ||= lines.map { |line| line.split('') }
       end
