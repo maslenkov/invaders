@@ -2,6 +2,7 @@
 
 ## Acceptance guide
 
+run `bundle install` to get dependencies.
 run `ruby bin/demo.rb` to visualize lib work.
 run `rspec` to review test suite.
 
