@@ -1,5 +1,12 @@
 # Development assignment
 
+## Acceptance guide
+
+run `ruby bin/demo.rb` to visualize lib work.
+run `rspec` to review test suite.
+
+## Documentation
+
 Space invaders are upon us!
 You were shortlisted as one of the great minds to help us track them down.
 
